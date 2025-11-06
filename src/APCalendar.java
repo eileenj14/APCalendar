@@ -34,7 +34,13 @@ public class APCalendar
      */
     private static int firstDayOfYear(int year)
     {
-        return 0;
+        int yearCode = ((year % 100) + ((year % 100) / 4)) % 7;
+
+        int[] centuryCodes = {4, 2, 0, 6, 4, 2, 0};
+        int centuryCode = centuryCodes[(year / 100) % 17];
+
+        if (isLeapYear(year)) return (yearCode + centuryCode) % 7;
+        return (yearCode + centuryCode + 1) % 7;
     }
 
     /** Returns n, where month, day, and year specify the nth day of the year.
